@@ -1,6 +1,6 @@
-import Board from "./Board.jsx"
+import Board from "../components/Board.jsx"
 import React, {useState} from "react"
-import {checkWin} from "./Game.jsx"
+import {checkWin} from "../utils/Game.js"
 
 
 function Twoplayer(){

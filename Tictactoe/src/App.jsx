@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Menu from "./Menu.jsx"
+import Menu from "./components/Menu.jsx"
 import "./App.css";
-import Oneplayer from "./Oneplayer.jsx"
-import Twoplayer from "./Twoplayer.jsx"
+import Oneplayer from "./pages/Oneplayer.jsx"
+import Twoplayer from "./pages/Twoplayer.jsx"
 function App(){
   const [mode, setMode] = useState("menu")
     return (
