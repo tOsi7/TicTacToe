@@ -1,3 +1,4 @@
+//Menu.jsx
 import React, { useState } from "react";
 function Menu({setMode}){
     return(
