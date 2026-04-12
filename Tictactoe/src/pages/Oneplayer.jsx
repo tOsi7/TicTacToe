@@ -34,7 +34,7 @@ function Oneplayer() {
   // 🔥 update backend
   const saveScore = async (player, score) => {
     try {
-      await fetch("http://tictactoe-api.onrender.com/scores", {
+      await fetch("https://tictactoe-4-1hm1.onrender.com/scores", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ player, score })
