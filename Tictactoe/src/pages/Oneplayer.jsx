@@ -19,7 +19,7 @@ function Oneplayer() {
   // 🔥 fetch leaderboard
   const fetchScores = async () => {
     try {
-      const res = await fetch("http://localhost:5000/scores");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/scores`);
       const data = await res.json();
       setScores(data);
     } catch (err) {
