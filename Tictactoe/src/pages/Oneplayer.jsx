@@ -7,6 +7,7 @@ function Oneplayer() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState(true);
   const [win, setWin] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
 
   const [player1, setPlayer1] = useState(0);
   const [player2, setPlayer2] = useState(0);
@@ -14,12 +15,12 @@ function Oneplayer() {
   const [difficulty, setDifficulty] = useState("easy");
   const [scores, setScores] = useState([]);
 
-  const [gameOver, setGameOver] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
-  // 🔥 fetch leaderboard
+  // GET leaderboard
   const fetchScores = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/scores`);
+      const res = await fetch(`${API}/scores`);
       const data = await res.json();
       setScores(data);
     } catch (err) {
@@ -31,13 +32,13 @@ function Oneplayer() {
     fetchScores();
   }, []);
 
-  // 🔥 update backend
-  const saveScore = async (player, score) => {
+  // POST score (backend handles increment)
+  const saveScore = async (player) => {
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/scores`, {
+      await fetch(`${API}/scores`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ player, score })
+        body: JSON.stringify({ player })
       });
 
       fetchScores();
@@ -46,7 +47,7 @@ function Oneplayer() {
     }
   };
 
-  // 🎮 PLAYER MOVE
+  // PLAYER MOVE
   const handleClick = (index) => {
     if (board[index] || win || !turn || gameOver) return;
 
@@ -61,9 +62,8 @@ function Oneplayer() {
       setGameOver(true);
 
       setPlayer1(p => {
-        const newScore = p + 1;
-        saveScore("Player", newScore);
-        return newScore;
+        saveScore("Player");
+        return p + 1;
       });
 
       return;
@@ -73,7 +73,7 @@ function Oneplayer() {
     setTimeout(() => aiPlay(newB), 300);
   };
 
-  // 🤖 AI MOVE
+  // AI MOVE
   const aiPlay = (currentB) => {
     if (win || gameOver) return;
 
@@ -96,9 +96,8 @@ function Oneplayer() {
       setGameOver(true);
 
       setPlayer2(p => {
-        const newScore = p + 1;
-        saveScore("AI", newScore);
-        return newScore;
+        saveScore("AI");
+        return p + 1;
       });
 
       return;
@@ -107,7 +106,7 @@ function Oneplayer() {
     setTurn(true);
   };
 
-  // 🔄 RESET
+  // RESET
   const resetGame = () => {
     setBoard(Array(9).fill(null));
     setTurn(true);
@@ -120,22 +119,17 @@ function Oneplayer() {
 
       <h1>Player: {player1} | AI: {player2}</h1>
 
-      {/* Difficulty */}
       <div className="difficulty">
         <button onClick={() => setDifficulty("easy")}>Easy</button>
         <button onClick={() => setDifficulty("medium")}>Medium</button>
         <button onClick={() => setDifficulty("hard")}>Hard</button>
       </div>
 
-      {/* Board */}
       <Board board={board} onClick={handleClick} />
 
-      {/* Status */}
       {win && <h2>{win === "X" ? "Player Wins" : "AI Wins"}</h2>}
       {!win && board.every(c => c !== null) && <h2>It's a tie</h2>}
 
-      {/* Leaderboard */}
-      <div className="leaderboard">
       <h2>Leaderboard</h2>
       <ul>
         {scores.map((s, i) => (
@@ -144,12 +138,8 @@ function Oneplayer() {
           </li>
         ))}
       </ul>
-      </div>
 
-      {/* Reset */}
-      <button onClick={resetGame} className="reset">
-        Reset
-      </button>
+      <button onClick={resetGame}>Reset</button>
     </div>
   );
 }
