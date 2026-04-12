@@ -19,14 +19,19 @@ function Oneplayer() {
 
   // GET leaderboard
   const fetchScores = async () => {
-    try {
-      const res = await fetch(`${API}/scores`);
-      const data = await res.json();
-      setScores(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}`);
+
+    console.log("STATUS:", res.status);
+
+    const data = await res.json();
+    console.log("SCORES:", data);
+
+    setScores(data);
+  } catch (err) {
+    console.error("FETCH ERROR:", err);
+  }
+};
 
   useEffect(() => {
     fetchScores();
