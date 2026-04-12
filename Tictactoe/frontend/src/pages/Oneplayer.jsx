@@ -19,19 +19,14 @@ function Oneplayer() {
 
   // GET leaderboard
   const fetchScores = async () => {
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}`);
-
-    console.log("STATUS:", res.status);
-
-    const data = await res.json();
-    console.log("SCORES:", data);
-
-    setScores(data);
-  } catch (err) {
-    console.error("FETCH ERROR:", err);
-  }
-};
+    try {
+      const res = await fetch(`${API}/scores`);
+      const data = await res.json();
+      setScores(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     fetchScores();
@@ -135,14 +130,17 @@ function Oneplayer() {
       {win && <h2>{win === "X" ? "Player Wins" : "AI Wins"}</h2>}
       {!win && board.every(c => c !== null) && <h2>It's a tie</h2>}
 
-      <h2>Leaderboard</h2>
-      <ul>
-        {scores.map((s, i) => (
-          <li key={i}>
-            {s.player}: {s.score}
-          </li>
-        ))}
-      </ul>
+      {/* LEADERBOARD */}
+      <div className="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul>
+          {scores.map((s, i) => (
+            <li key={i}>
+              {s.player}: {s.score}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <button onClick={resetGame}>Reset</button>
     </div>

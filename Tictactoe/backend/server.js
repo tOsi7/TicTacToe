@@ -4,14 +4,14 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin: "*" // later you can restrict to your Vercel URL
+  origin: "*"
 }));
 
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-// ✅ backend owns score logic (IMPORTANT)
+// in-memory leaderboard
 let leaderboard = {
   Player: 0,
   AI: 0
@@ -27,19 +27,19 @@ app.get("/scores", (req, res) => {
   res.json(formatted);
 });
 
-// POST score update (increment)
+// POST = increment score
 app.post("/scores", (req, res) => {
   const { player } = req.body;
 
-  if (!player) {
-    return res.status(400).json({ error: "Player required" });
+  if (!leaderboard[player]) {
+    leaderboard[player] = 0;
   }
 
-  leaderboard[player] = (leaderboard[player] || 0) + 1;
+  leaderboard[player] += 1;
 
   res.json({
-    message: "Updated",
-    leaderboard
+    player,
+    score: leaderboard[player]
   });
 });
 
