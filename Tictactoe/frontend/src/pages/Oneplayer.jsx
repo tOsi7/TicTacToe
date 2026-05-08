@@ -15,18 +15,23 @@ function Oneplayer() {
   const [difficulty, setDifficulty] = useState("easy");
   const [scores, setScores] = useState([]);
 
+  const [nameSet, setNameSet] = useState(false);
+
   const API = import.meta.env.VITE_API_URL;
 
   // GET leaderboard
+  useEffect(() => {
   const fetchScores = async () => {
     try {
-      const res = await fetch(`${API}/scores`);
+      //const res = await fetch(`${API}/scores`);
+      const res = await fetch('http://localhost:5000/scores')
       const data = await res.json();
       setScores(data);
     } catch (err) {
       console.error(err);
     }
   };
+}
 
   useEffect(() => {
     fetchScores();
@@ -35,7 +40,8 @@ function Oneplayer() {
   // POST score (backend handles increment)
   const saveScore = async (player) => {
     try {
-      await fetch(`${API}/scores`, {
+      //await fetch(`${API}/scores`
+      await fetch('http://localhost:5000/scores', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ player })
@@ -115,7 +121,12 @@ function Oneplayer() {
   };
 
   return (
+    
     <div className="game">
+      { !nameSet ? (
+        <div> Hello </div>
+      ):(
+        <div>
 
       <h1>Player: {player1} | AI: {player2}</h1>
 
@@ -143,6 +154,9 @@ function Oneplayer() {
       </div>
 
       <button onClick={resetGame}>Reset</button>
+      </div>
+        )
+      }
     </div>
   );
 }

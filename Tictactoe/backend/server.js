@@ -9,12 +9,13 @@ app.use(cors({
 
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+const PORT = //process.env.PORT || 
+              5000;
 
 // in-memory leaderboard
 let leaderboard = {
   Player: 0,
-  AI: 0
+  AI: 0,
 };
 
 // GET leaderboard
