@@ -4,8 +4,18 @@ function Login( {setLoggedIn, setMode} ){
     const [newUser, setNewUser] = useState(false)
     const [userN, setUserN] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     function handleSignUp(){
+        
+            if(checkLogin() && password === confirmPassword){
+                setLoggedIn(true);
+                setMode("menu");
+            }
+            
+            else{
+                alert("Invalid username or password. Username must be at least 5 characters long. Password must be at least 8 characters long and contain at least one number and one special character. Passwords must match.");
+            }
 
     }
     function checkLogin(){
@@ -38,11 +48,11 @@ function Login( {setLoggedIn, setMode} ){
             
             <h1>Sign Up</h1>
             <div className = "login-form">
-                    <input type="text" placeholder="Username"/>
-                    <input type = "password" placeholder="Password"/>
-                    <input type = "Password" placeholder="Confirm Password"/>
+                    <input type="text" placeholder="Username" onChange={(e) => {setUserN(e.target.value);}}/>
+                    <input type = "password" placeholder="Password" onChange={(e) => {setPassword(e.target.value);}}/>
+                    <input type = "Password" placeholder="Confirm Password" onChange={(e) => {setConfirmPassword(e.target.value);}}/>
                 </div>
-                <button onClick={() => { setLoggedIn(true); setMode("menu") }}>Create Account</button>
+                <button onClick={handleSignUp}>Create Account</button>
             </div>
             </>
         ) : (
@@ -55,7 +65,7 @@ function Login( {setLoggedIn, setMode} ){
                     <input type = "password" placeholder="Password" onChange={(e) => {setPassword(e.target.value);}}/>
                 </div>
                 <button onClick={handleLogin}>Login</button>
-                <h3>Don't want to create an account? Continue as a guest!</h3>
+                <h3 onClick={() => { setLoggedIn(true); setMode("menu") }}>Don't want to create an account? Continue as a guest!</h3>
 
             </div>
             </>
