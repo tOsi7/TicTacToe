@@ -32,10 +32,11 @@ function Oneplayer() {
     }
   };
 }
+  )
 
   useEffect(() => {
     fetchScores();
-  }, []);
+    }, []);
 
   // POST score (backend handles increment)
   const saveScore = async (player) => {
