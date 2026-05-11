@@ -1,5 +1,7 @@
 
 function Online() {
+
+    
     return (
         <div className="online-container">
             <h1>Online Mode</h1>
