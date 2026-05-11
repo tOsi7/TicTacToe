@@ -147,3 +147,118 @@ button:hover {
   font-weight: bold;
   color: #2563eb;
 }
+
+.newuserolduser {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 60px auto 0;
+  width: fit-content;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+ 
+.newuserolduser button {
+  margin: 0;
+  border-radius: 0;
+  background: #e2e8f0;
+  color: #1f2937;
+  font-weight: 600;
+  padding: 10px 28px;
+  transition: background 0.2s, color 0.2s;
+}
+ 
+.newuserolduser button:hover {
+  background: #cbd5e1;
+  color: #1f2937;
+}
+ 
+/* Active tab — highlight the selected one via JS if needed,
+   or you can add an .active class to the clicked button */
+.newuserolduser button.active {
+  background: #2563eb;
+  color: white;
+}
+ 
+/* Login / Sign Up card */
+.login {
+  margin: 24px auto 0;
+  padding: 36px 40px;
+  width: 340px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+ 
+.login h1 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: #111827;
+}
+ 
+/* Stack inputs vertically */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+ 
+.login-form input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: "Segoe UI", sans-serif;
+  color: #1f2937;
+  background: #f9fafb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  outline: none;
+}
+ 
+.login-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background: #ffffff;
+}
+ 
+.login-form input::placeholder {
+  color: #9ca3af;
+}
+ 
+/* Primary action button inside card */
+.login > button {
+  width: 100%;
+  padding: 11px;
+  margin: 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #2563eb;
+  color: white;
+  transition: background 0.2s, transform 0.1s;
+}
+ 
+.login > button:hover {
+  background: #1d4ed8;
+  transform: scale(1.02);
+}
+ 
+/* Guest link */
+.login h3 {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+ 
+.login h3:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
