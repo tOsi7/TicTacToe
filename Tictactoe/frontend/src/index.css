@@ -262,3 +262,77 @@ button:hover {
   color: #2563eb;
   text-decoration: underline;
 }
+/* Online Page */
+.online-container {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.online-placeholder {
+  margin: 30px auto 0;
+  padding: 20px;
+  width: 600px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.online-placeholder h2 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  color: #111827;
+}
+
+/* Table */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header */
+.leaderboard-header tr {
+  background: #2563eb;
+  color: white;
+}
+
+.leaderboard-header th {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.leaderboard-header th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.leaderboard-header th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+/* Rows */
+.leaderboard-body tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.leaderboard-body tr:hover {
+  background: #e0f2fe;
+  transform: translateX(4px);
+}
+
+.leaderboard-body td {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1f2937;
+  text-align: center;
+}
+
+.leaderboard-body tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.leaderboard-body tr:nth-child(even):hover {
+  background: #e0f2fe;
+}
