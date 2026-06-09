@@ -1,10 +1,10 @@
 #app/model/user.py
 from app.model.mixins import TimeMixin
-from sqlmodel import SQLModel, Field, Relationship
-from sqlalchemy import Column, String, table
+from sqlmodel import SQLModel, Field
+from sqlalchemy import Column, String
 
-class user(SQLModel, TimeMixin, table=True):
-    __tablename__ = "users"
+class Users(SQLModel, TimeMixin, table=True):
+    __tablename__ = "Users"
 
     id: int = Field(default=None, primary_key=True)
     username: str = Field(sa_column=Column(String, unique=True, nullable=False))

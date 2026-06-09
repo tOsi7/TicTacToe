@@ -22,7 +22,7 @@ class AsyncDatabase:
 
 db = AsyncDatabase()
 
-async def get_sessinon() -> AsyncGenerator[AsyncSession, None]:
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
 
     async with db.session_maker() as session:
         try:
