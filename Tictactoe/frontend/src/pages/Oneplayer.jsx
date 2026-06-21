@@ -11,48 +11,13 @@ function Oneplayer() {
 
   const [player1, setPlayer1] = useState(0);
   const [player2, setPlayer2] = useState(0);
-
   const [difficulty, setDifficulty] = useState("easy");
-  const [scores, setScores] = useState([]);
 
   const [nameSet, setNameSet] = useState(false);
-
-  const API = import.meta.env.VITE_API_URL;
+  
 
   // GET leaderboard
-  useEffect(() => {
-  const fetchScores = async () => {
-    try {
-      //const res = await fetch(`${API}/scores`);
-      const res = await fetch('http://localhost:5000/scores')
-      const data = await res.json();
-      setScores(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-}
-  )
 
-  useEffect(() => {
-    fetchScores();
-    }, []);
-
-  // POST score (backend handles increment)
-  const saveScore = async (player) => {
-    try {
-      //await fetch(`${API}/scores`
-      await fetch('http://localhost:5000/scores', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ player })
-      });
-
-      fetchScores();
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   // PLAYER MOVE
   const handleClick = (index) => {
@@ -67,11 +32,6 @@ function Oneplayer() {
     if (winner) {
       setWin(winner);
       setGameOver(true);
-
-      setPlayer1(p => {
-        saveScore("Player");
-        return p + 1;
-      });
 
       return;
     }
@@ -101,12 +61,6 @@ function Oneplayer() {
     if (winner) {
       setWin(winner);
       setGameOver(true);
-
-      setPlayer2(p => {
-        saveScore("AI");
-        return p + 1;
-      });
-
       return;
     }
 
@@ -124,7 +78,7 @@ function Oneplayer() {
   return (
     
     <div className="game">
-      { !nameSet ? (
+      { nameSet ? (
         <div> Hello </div>
       ):(
         <div>
@@ -144,14 +98,6 @@ function Oneplayer() {
 
       {/* LEADERBOARD */}
       <div className="leaderboard">
-        <h2>Leaderboard</h2>
-        <ul>
-          {scores.map((s, i) => (
-            <li key={i}>
-              {s.player}: {s.score}
-            </li>
-          ))}
-        </ul>
       </div>
 
       <button onClick={resetGame}>Reset</button>

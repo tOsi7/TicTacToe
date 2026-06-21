@@ -13,25 +13,33 @@ function Login( {setLoggedIn, setMode} ){
                 if (checkLogin() && password === confirmPassword) {
                     const user = await registerUser(userN, password);
                     console.log("Registered user:");
+                    localStorage.setItem("user", JSON.stringify(user));
                     setLoggedIn(true);
                     setMode("menu");
                 }
                 else{
-                    alert("Invalid username or password. Username must be at least 5 characters long. Password must be at least 8 characters long and contain at least one number and one special character. Passwords must match.");
-                    console.error("Invalid username or password. Username must be at least 5 characters long. Password must be at least 8 characters long and contain at least one number and one special character. Passwords must match.");
+                    alert("Sign Up Credentials incorrect. Please check your inputs and try again.");
+                    console.error("Sign Up Credentials incorrect.");
                 }
                 
             } catch (error) {
-                console.error(error)
-               alert("Registration failed. Username may already be taken.");
+                console.error("Registration failed:", error);
+                alert("Registration failed. Some bs error occurred .");
                 }
     
-}
+}  
     function checkLogin(){
-        if(userN.length < 5)
+        if(userN.length < 5){
+            alert("Username must be at least 5 characters long.");
+            console.error("Username.");
             return false;
-        else if(password.length < 8 || !/\d/.test(password) || !/[!@#$%^&*]/.test(password))
+        }
+        else if(password.length < 8 || !/\d/.test(password) || !/[!@#$%^&*]/.test(password)){
+            alert("Password must be at least 8 characters long and contain at least one number and one special character.");
+            console.error("Password.");
             return false;
+    }
+
         return true;
 
     }
@@ -44,11 +52,11 @@ function Login( {setLoggedIn, setMode} ){
                 setMode("menu");
             }
             else{
-                alert("Invalid username or password. Username must be at least 5 characters long. Password must be at least 8 characters long and contain at least one number and one special character.");
-                console.error("Invalid username or password. Username must be at least 5 characters long. Password must be at least 8 characters long and contain at least one number and one special character.");
+            
+                console.error("Login Credentials incorrect.");
             }
         } catch (error) {
-            console.error(error);
+            console.error("Login failed:", error);
             alert("Login failed.");
         }
 

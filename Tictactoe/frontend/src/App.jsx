@@ -7,20 +7,20 @@ import Twoplayer from "./pages/Twoplayer.jsx"
 import Login from "./pages/Login.jsx"
 import Online from "./pages/Online.jsx"
 function App(){
-  const [mode, setMode] = useState("login")
+  const [mode, setMode] = useState("menu")
   const [loggedIn, setLoggedIn] = useState(false)
     return (
-      <>{mode === "login" && !loggedIn ? 
+      <>{mode === "login" || !loggedIn ? 
       <Login setLoggedIn={setLoggedIn} setMode={setMode} /> :  (
         <>
       {mode !== "menu" && (
       <button onClick={() => setMode("menu")}className="Backbutton">Back</button>
       )}
       
-      {mode === "menu" && <Menu setMode={setMode}/>}
+      {mode === "menu" && <Menu setMode={setMode} setLoggedIn={setLoggedIn} />}
       {mode === "1player" && <Oneplayer />}
       {mode === "2player" && <Twoplayer />}
-      {mode === "Online" && <Online />}
+      {mode === "Online" && <Online />} 
       </>
       ) 
     }
