@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
 from typing import AsyncGenerator
 
-db_config = "postgresql+asyncpg://rds:Tdotosi1!@database-1.cd8qqg0620ns.us-east-2.rds.amazonaws.com:5432/postgresTTT"
+db_config = "postgresql+asyncpg://postgresTTT:Tdotosi1!@database-1.cd8qqg0620ns.us-east-2.rds.amazonaws.com:5432/postgres"
 
 class AsyncDatabase:
     def __init__(self):
