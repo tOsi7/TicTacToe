@@ -1,30 +1,52 @@
-Tic Tac Toe Full Stack Game
+Tic Tac Toe Full-Stack Game
 
-Simple full-stack Tic Tac Toe game with AI and a basic leaderboard system.
+A full-stack Tic Tac Toe web application with AI gameplay, user authentication, persistent user data, and a leaderboard system powered by a REST API and PostgreSQL database.
 
-## What it does
+Features:
+  User registration and login system (authentication with hashed passwords)
+  Persistent user accounts stored in PostgreSQL
+  Play Tic Tac Toe against AI
+  Multiple AI difficulty levels (easy, medium, hard)
+  Heuristic-based logic for lower levels
+  Minimax algorithm for hard mode
+  Game state tracking and score persistence per user
+  REST API backend for all game and user operations
+  Basic leaderboard system based on stored user stats
+  Session persistence (users remain logged in on refresh using client-side storage)
 
-- Play Tic Tac Toe vs AI
-- 3 difficulty levels (easy, medium, hard)
-- AI uses basic heuristics + minimax (for hard mode)
-- Tracks scores using a backend API
-- Updates leaderboard after each game
+AI Features:
+  Easy/Medium: heuristic-based decision making
+  Hard: Minimax algorithm for optimal play
 
-## Tech Stack
+Tech Stack:
+  Frontend
+  React
+  JavaScript
+  CSS
+  Backend
+  FastAPI (Python)
+  REST API architecture
+  PostgreSQL
+  bcrypt (password hashing)
+  SQLAlchemy / SQLModel (ORM)
 
-**Frontend:**
-- React
-- JavaScript
-- CSS
+Authentication:
+  User passwords are securely hashed using bcrypt
+  Login verifies hashed passwords using secure comparison
+  Session persistence handled via localStorage (client-side)
 
-**Backend:**
-- Node.js
-- Express
-- REST API
+Database:
+  PostgreSQL database stores:
+    User accounts
+    Password hashes
+    Game statistics (wins, games played, time of account creation)
+    Leaderboard data
 
-## Features
-
-- Single player vs AI
-- Win detection
-- Score tracking (Player vs AI)
-- Simple leaderboard system (in-memory)
+    
+Core Functionality:
+  Create account and log in
+  Play against AI
+  Track wins/losses per user
+  Persist user data across sessions
+  Retrieve leaderboard data via API
+  Maintain multiple versions of the project using Git
