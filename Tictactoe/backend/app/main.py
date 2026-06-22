@@ -9,14 +9,13 @@ from app.router.user import router as user_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     #startup
+    db.init()
     await db.create_all()
     yield
     #shutdown
     await db.close()
 
-
 def init_app():
-    db.init()
 
     app = FastAPI(
         title="Tic Tac Toe API",
