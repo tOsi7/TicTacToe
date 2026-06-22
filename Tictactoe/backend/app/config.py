@@ -4,15 +4,12 @@ from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
 from typing import AsyncGenerator
 
-db_config = "postgresql+asyncpg://postgresTTT:071380@database-1.cd8qqg0620ns.us-east-2.rds.amazonaws.com:5432/postgresTTT"
+db_config = "postgresql+asyncpg://postgresTTT:Tdotosi1!@database-1.cd8qqg0620ns.us-east-2.rds.amazonaws.com:5432/postgresTTT"
 
 class AsyncDatabase:
-    def __init__(self) -> None:
-        self.session = None
-        self.engine = None
-    
-    def init(self):
+    def __init__(self):
         self.engine = create_async_engine(db_config, future=True, echo=True)
+        
         self.session_maker = sessionmaker(
             self.engine, expire_on_commit=False, class_=AsyncSession)
 

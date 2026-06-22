@@ -9,7 +9,6 @@ from app.router.user import router as user_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     #startup
-    db.init()
     await db.create_all()
     yield
     #shutdown
