@@ -2,7 +2,7 @@
 const BASE_URL = "/api";
 
 export async function registerUser(username, password) {
-    const res = await fetch(`${BASE_URL}/api/users/register`, {
+    const res = await fetch(`${BASE_URL}/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -14,13 +14,13 @@ export async function registerUser(username, password) {
 }
 
 export async function getUsers() {
-    const res = await fetch(`${BASE_URL}/api/users/`);
+    const res = await fetch(`${BASE_URL}/users/`);
     if (!res.ok) throw new Error("Failed to fetch users");
     return res.json();
 }
 
 export async function loginUser(username, password){
-    const res = await fetch(`${BASE_URL}/api/users/login`, {
+    const res = await fetch(`${BASE_URL}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
