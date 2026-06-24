@@ -1,5 +1,5 @@
 //utils/api.js
-const BASE_URL = "http://0.0.0.0:8000";
+const BASE_URL = "http://3.22.170.170:8000";
 
 export async function registerUser(username, password) {
     const res = await fetch(`${BASE_URL}/users/register`, {
