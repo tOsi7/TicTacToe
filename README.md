@@ -19,16 +19,17 @@ AI Features:
   Hard: Minimax algorithm for optimal play
 
 Tech Stack:
-  Frontend
+  Frontend (vercel deployed)
   React
   JavaScript
   CSS
-  Backend
+  Backend (EC2 deployed)
   FastAPI (Python)
   REST API architecture
-  PostgreSQL
+  Amaozon RDS (PostgreSQL)
   bcrypt (password hashing)
   SQLAlchemy / SQLModel (ORM)
+  
 
 Authentication:
   User passwords are securely hashed using bcrypt
@@ -36,7 +37,7 @@ Authentication:
   Session persistence handled via localStorage (client-side)
 
 Database:
-  PostgreSQL database stores:
+  Amazon RDS database stores:
     User accounts
     Password hashes
     Game statistics (wins, games played, time of account creation)
