@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { registerUser, loginUser } from "../utils/api.js";
 
 
-function Login( {setLoggedIn, setMode} ){
+function Login( {setMode, setUser} ){
     const [newUser, setNewUser] = useState(false)
     const [userN, setUserN] = useState("")
     const [password, setPassword] = useState("")
@@ -13,8 +13,9 @@ function Login( {setLoggedIn, setMode} ){
                 if (checkLogin() && password === confirmPassword) {
                     const user = await registerUser(userN, password);
                     console.log("Registered user:");
-                    localStorage.setItem("user", JSON.stringify(user));
-                    setLoggedIn(true);
+                    const token = await getToken(userN);
+                    console.log("Retrieved token:");
+                    setUser(token);
                     setMode("menu");
                 }
                 else{
@@ -48,7 +49,9 @@ function Login( {setLoggedIn, setMode} ){
             if(checkLogin()){
                 const user = await loginUser(userN, password);
                 console.log("Log in successful:");
-                setLoggedIn(true);
+                const token = await getToken(userN);
+                console.log("Retrieved token:");
+                setUser(token);
                 setMode("menu");
             }
             else{
@@ -90,7 +93,7 @@ function Login( {setLoggedIn, setMode} ){
                     <input type = "password" placeholder="Password" onChange={(e) => {setPassword(e.target.value);}}/>
                 </div>
                 <button onClick={handleLogin}>Login</button>
-                <h3 onClick={() => { setLoggedIn(true); setMode("menu") }}>Don't want to create an account? Continue as a guest!</h3>
+                <h3 onClick={() => { setUser(1); setMode("menu") }}>Don't want to create an account? Continue as a guest!</h3>
 
             </div>
             </>

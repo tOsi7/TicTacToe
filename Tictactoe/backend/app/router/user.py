@@ -38,14 +38,15 @@ async def login(data: UserRegister, session: AsyncSession = Depends(get_session)
         raise HTTPException(status_code=400, detail="Invalid password")
     return user[0]
 
+@router.get("/token")
+async def get_token(data: UserRegister, session: AsyncSession = Depends(get_session)):
+    res = await session.execute(select(Users).where(Users.username == data.username))
+    user = res.first()
+    if not user:
+        raise HTTPException(status_code=400, detail="Invalid username")
+    return user
+
 @router.get("/")
-
-
-
-
-
-
-
 async def get_users(session: AsyncSession = Depends(get_session)):
     res = await session.execute(select(Users))
     users = res.scalars().all()

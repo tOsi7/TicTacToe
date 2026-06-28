@@ -11,3 +11,5 @@ class Users(SQLModel, TimeMixin, table=True):
     password: str = Field(sa_column=Column(String, nullable=False))
     games_played: int = Field(default=0)
     games_won: int = Field(default=0)
+    ai_games_won: int = Field(default=0)
+    ai_games_lost: int = Field(default=0)

@@ -1,5 +1,7 @@
 //utils/api.js
-const BASE_URL = "/api";
+//const BASE_URL = "/api";
+//test api
+const BASE_URL =  "http://127.0.0.1:8000"
 
 export async function registerUser(username, password) {
     const res = await fetch(`${BASE_URL}/users/register`, {
@@ -16,6 +18,12 @@ export async function registerUser(username, password) {
 export async function getUsers() {
     const res = await fetch(`${BASE_URL}/users/`);
     if (!res.ok) throw new Error("Failed to fetch users");
+    return res.json();
+}
+
+export async function getToken(username) {
+    const res = await fetch(`${BASE_URL}/users/token`);
+    if (!res.ok) throw new Error("Failed to get token");
     return res.json();
 }
 

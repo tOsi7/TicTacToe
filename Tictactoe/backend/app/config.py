@@ -4,8 +4,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
 from typing import AsyncGenerator
 
-db_config = "postgresql+asyncpg://postgresTTT:Tdotosi1!@database-1.cd8qqg0620ns.us-east-2.rds.amazonaws.com:5432/postgres"
-
+#db_config = "postgresql+asyncpg://postgresTTT:Tdotosi1!@database-1.cd8qqg0620ns.us-east-2.rds.amazonaws.com:5432/postgres"
+#test db
+db_config = "postgresql+asyncpg://postgres:Tdotosi0713!@127.0.0.1:5432/TicTacToe"
 class AsyncDatabase:
     def __init__(self):
         self.engine = create_async_engine(db_config, future=True, echo=True)
@@ -32,3 +33,5 @@ async def get_session() -> AsyncGenerator[AsyncSession, None]:
         except Exception:
             await session.rollback()
             raise 
+        finally:
+            await session.close()

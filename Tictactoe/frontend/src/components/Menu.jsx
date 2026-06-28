@@ -1,6 +1,6 @@
 //Menu.jsx
 import React, { useState } from "react";
-function Menu({setMode, setLoggedIn}){
+function Menu({setMode, setUser}){
     return(
       <>
       
@@ -10,7 +10,7 @@ function Menu({setMode, setLoggedIn}){
           <button onClick={() => setMode("2player")}>2 Players</button>
           <button onClick={() => setMode("Online")}>Online</button>
         </div>
-        <button className = "logout" onClick={() => setLoggedIn(false)}>
+        <button className = "logout" onClick={() => setUser(null)}>
         Log Out
         </button>
       </>
